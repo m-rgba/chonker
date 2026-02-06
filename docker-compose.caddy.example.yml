@@ -1,0 +1,29 @@
+services:
+  chonker:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - CHONK_DATA:/home/kasm-user
+      
+  caddy:
+    image: caddy:alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    environment:
+      - CADDY_USER=${CADDY_USER:-admin}
+      - CADDY_PASSWORD=${CADDY_PASSWORD:-password}
+    volumes:
+      - ./config/Caddyfile:/etc/caddy/Caddyfile
+    depends_on:
+      - chonker
+    command: >
+        /bin/sh -c "
+        if [ -z \"$$CADDY_PASSWORD_HASH\" ]; then
+            export CADDY_PASSWORD_HASH=$$(caddy hash-password --plaintext $$CADDY_PASSWORD);
+        fi;
+        caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+        "
+
+volumes:
+  CHONK_DATA:

@@ -1,0 +1,35 @@
+{
+    # Global options
+    order basic_auth before reverse_proxy
+}
+
+(basic_auth_filter) {
+    basic_auth {
+        {$CADDY_USER} {$CADDY_PASSWORD_HASH}
+    }
+}
+
+http://desktop.localhost {
+    import basic_auth_filter
+    reverse_proxy chonker:6901
+}
+
+http://code.localhost {
+    import basic_auth_filter
+    reverse_proxy chonker:8801
+}
+
+http://opencode.localhost {
+    import basic_auth_filter
+    reverse_proxy chonker:8802
+}
+
+http://marimo.localhost {
+    import basic_auth_filter
+    reverse_proxy chonker:8804
+}
+
+http://vibekanbam.localhost {
+    import basic_auth_filter
+    reverse_proxy chonker:8803
+}
