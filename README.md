@@ -32,7 +32,7 @@ Gemini          + Agent Skils
 </pre>
       </td>
       <td width="30%" align="left">
-         <img width="457" height="629" alt="image" src="https://github.com/user-attachments/assets/7044ed16-2bfe-4270-99d6-8000a5bd5ba6" />         
+         <img width="457" height="629" alt="image" src="./readme.png" />         
       </td>
     </tr>
   </table>
