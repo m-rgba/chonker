@@ -1,6 +1,6 @@
 # Chonker
 Shipping the whole dev machine in a container.
-Hiren's BootCD for the AI age.
+Hiren's BootCD, but for AI.
 ```
     ___       ___       ___       ___       ___       ___       ___   
    /\  \     /\__\     /\  \     /\__\     /\__\     /\  \     /\  \  
