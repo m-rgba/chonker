@@ -54,7 +54,7 @@ ENV PATH="/.venv/bin:$PATH"
 # Setup code server extensions
 RUN code-server --install-extension sst-dev.opencode \
     && code-server --install-extension openai.chatgpt \
-    && code-server --install-extension anthropic.claude-code \
+    && code-server --install-extension anthropic.claude-code
 
 # Configure startup scripts
 RUN sed -i '/######## FUNCTION DECLARATIONS ##########/r /tmp/startup.sh' /dockerstartup/vnc_startup.sh \
