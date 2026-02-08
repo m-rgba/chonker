@@ -188,12 +188,3 @@ agent-browser find testid "submit-btn" click
 ./templates/authenticated-session.sh https://app.example.com/login
 ./templates/capture-workflow.sh https://example.com ./output
 ```
-
-## Comparison with browser-use
-
-| Feature            | agent-browser                      | browser-use                    |
-| ------------------ | ---------------------------------- | ------------------------------ |
-| **Token Usage**    | **Lower (Efficient)**              | Higher                         |
-| **Identification** | Refs (`@e1`)                       | Indices (`1`, `2`)             |
-| **Scripting**      | Bash-centric                       | Python Support                 |
-| **Best For**       | **Default choice**, standard tasks | Complex apps, persistent state |

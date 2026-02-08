@@ -6,9 +6,10 @@ services:
       - 127.0.0.1:8800:6901 # Web desktop
       - 127.0.0.1:8801:8801 # Code server
       - 127.0.0.1:8802:8802 # OpenCode
-      - 127.0.0.1:8803:8803 # Vibe Kanban
-      - 127.0.0.1:8804:8804 # Marimo
+      - 127.0.0.1:8803:8803 # Marimo
     volumes:
+      # Optional: if you want to persist data locally
+      # - ./chonk_data:/home/kasm-user
       - CHONK_DATA:/home/kasm-user
 
 volumes:

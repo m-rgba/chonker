@@ -23,12 +23,10 @@ docker compose up
 </pre>
          <strong>Pre-installed with:</strong><br/>
 <pre>
-Claude Code     ast-grep         Kasm web desktop (Ubuntu 24.04)
-OpenAI Codex    ripgrep          Code server (IDE)
-OpenCode        fd-find          Marimo (Python notebook)
-AMP             agent-browser    OpenCode server (web UI)
-Cursor (CLI)    browser-use      Vibe-Kanbam
-Gemini          + Agent Skils
+Claude Code     ast-grep             Kasm web desktop (Ubuntu 24.04)
+OpenAI Codex    ripgrep / fd-find    Code server (IDE)
+OpenCode        agent-browser        OpenCode server (web UI)
+Gemini          + agent skills       Marimo (Python notebook)
 </pre>
       </td>
       <td width="30%" align="left">
@@ -53,8 +51,7 @@ Service                            Port
 Ubuntu 24.04 + Kasm web desktop    [8800:6901]   
 Code server (hosted VSCode)        [8801]               
 OpenCode server                    [8802]
-Vibe-Kanbam                        [8803]
-Marimo (Python notebook)           [8804] + IDE extension
+Marimo (Python notebook)           [8803] + IDE extension
 ```
 
 ## 🧠 AI CLIs
@@ -65,7 +62,6 @@ Claude Code                        `claude`   + IDE extension
 OpenAI Codex                       `codex`    + IDE extension               
 OpenCode                           `opencode` + IDE extension               
 AMP                                `amp`      + IDE extension               
-Cursor                             `cursor`
 ```
 
 ## 🤸‍♂️ Skills
@@ -77,7 +73,6 @@ CLI                                What is it?
 ast-grep                           Structured search (abstract syntax tree - good for code).   
 ripgrep                            Better / faster grep.               
 fd-find                            Better / faster find - good for looking up files.               
-agent-browser                      Fast + lower token usage agent browser (default).                
-browser-use                        Traditional Playwright browser utility.
+agent-browser                      Fast + lower token usage agent browser.                
 ```
 

@@ -84,25 +84,12 @@ function start_marimo (){
     # Running in edit mode, headless, accessible from host
     mkdir -p "$HOME/notebooks"
     cd "$HOME/notebooks"
-    "$MARIMO_BIN" edit --host 0.0.0.0 --port 8804 --headless --no-token > "$HOME/.vnc/marimo.log" 2>&1 &
+    "$MARIMO_BIN" edit --host 0.0.0.0 --port 8803 --headless --no-token > "$HOME/.vnc/marimo.log" 2>&1 &
     
     KASM_PROCS['marimo']=$!
     
     if [[ $DEBUG == true ]]; then
         echo -e "\n------------------ Started Marimo ----------------------------"
         echo "Marimo PID: ${KASM_PROCS['marimo']}";
-    fi
-}
-
-function start_vibe_kanban (){
-    log 'Starting Vibe Kanban'
-        
-    HOST=0.0.0.0 PORT=8803 npx vibe-kanban > "$HOME/.vnc/vibe-kanban.log" 2>&1 &
-    
-    KASM_PROCS['vibe-kanban']=$!
-    
-    if [[ $DEBUG == true ]]; then
-        echo -e "\n------------------ Started Vibe Kanban ----------------------------"
-        echo "Vibe Kanban PID: ${KASM_PROCS['vibe-kanban']}";
     fi
 }

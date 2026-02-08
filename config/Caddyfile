@@ -26,10 +26,5 @@ http://opencode.localhost {
 
 http://marimo.localhost {
     import basic_auth_filter
-    reverse_proxy chonker:8804
-}
-
-http://vibekanbam.localhost {
-    import basic_auth_filter
     reverse_proxy chonker:8803
 }

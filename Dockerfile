@@ -7,7 +7,7 @@ COPY config/startup.sh /tmp/startup.sh
 COPY config/kasmvnc.yaml /tmp/kasmvnc.yaml
 
 # Copy skills
-# /.claude/skills > also works for OpenCode, Cursor CLI, and AmpCode
+# /.claude/skills > also works for OpenCode, Cursor CLI
 COPY skills /home/kasm-user/.claude/skills
 COPY skills /home/kasm-user/.codex/skills
 COPY skills /home/kasm-user/.gemini/skills
@@ -31,26 +31,23 @@ RUN apt-get update \
 
 # Installers
 RUN curl -fsSL https://code-server.dev/install.sh | sh -s -- --method=standalone --prefix=/usr/local \
-    && curl -fsSL https://opencode.ai/install | bash \
-    && curl -fsSL https://ampcode.com/install.sh | bash \
-    && curl -fsSL https://cursor.sh/cli/install.sh | sh \
     && curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/usr/local/bin sh
 
 # Install node.js global packages
 RUN npm install -g --force \
-    agent-browser \
     @ast-grep/cli \
-    @openai/codex \
     @anthropic-ai/claude-code \
     @google/gemini-cli \
+    @openai/codex \
+    @sourcegraph/amp@latest \
+    agent-browser \
+    opencode-ai \
     && agent-browser install --with-deps
 
 # Install python deps 
 RUN uv venv \
     && . .venv/bin/activate \
-    && uv pip install marimo \
-    && uv pip install browser-use \
-    && uvx browser-use install
+    && uv pip install marimo
 
 ENV PATH="/.venv/bin:$PATH"
 
@@ -58,21 +55,18 @@ ENV PATH="/.venv/bin:$PATH"
 RUN code-server --install-extension sst-dev.opencode \
     && code-server --install-extension openai.chatgpt \
     && code-server --install-extension anthropic.claude-code \
-    && code-server --install-extension sourcegraph.amp \
-    && code-server --install-extension bloop.vibe-kanban
 
 # Configure startup scripts
 RUN sed -i '/######## FUNCTION DECLARATIONS ##########/r /tmp/startup.sh' /dockerstartup/vnc_startup.sh \
     && sed -i '/STARTUP_COMPLETE=1/i start_code_server' /dockerstartup/vnc_startup.sh \
     && sed -i '/STARTUP_COMPLETE=1/i start_opencode_server' /dockerstartup/vnc_startup.sh \
     && sed -i '/STARTUP_COMPLETE=1/i start_marimo' /dockerstartup/vnc_startup.sh \
-    && sed -i '/STARTUP_COMPLETE=1/i start_vibe_kanban' /dockerstartup/vnc_startup.sh \
     && sed -i '/log "Starting KasmVNC"/a mkdir -p $HOME/.vnc && cp /tmp/kasmvnc.yaml $HOME/.vnc/kasmvnc.yaml' /dockerstartup/vnc_startup.sh \
     && sed -i 's/ -sslOnly / /g' /dockerstartup/vnc_startup.sh \
     && rm /tmp/startup.sh
 
 # Expose ports
-EXPOSE 6901 8800 8801 8802 8803 8804
+EXPOSE 6901 8800 8801 8802 8803
 
 # Set VNC settings
 ENV VNC_RESOLUTION=1024x768
